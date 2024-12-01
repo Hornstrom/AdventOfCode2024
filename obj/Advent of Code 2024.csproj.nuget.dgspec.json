@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Code\\Advent of Code 2024\\Advent of Code 2024\\Advent of Code 2024.csproj": {}
+    "D:\\Code\\AdventOfCode2024\\Advent of Code 2024\\Advent of Code 2024.csproj": {}
   },
   "projects": {
-    "D:\\Code\\Advent of Code 2024\\Advent of Code 2024\\Advent of Code 2024.csproj": {
+    "D:\\Code\\AdventOfCode2024\\Advent of Code 2024\\Advent of Code 2024.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Code\\Advent of Code 2024\\Advent of Code 2024\\Advent of Code 2024.csproj",
+        "projectUniqueName": "D:\\Code\\AdventOfCode2024\\Advent of Code 2024\\Advent of Code 2024.csproj",
         "projectName": "Advent of Code 2024",
-        "projectPath": "D:\\Code\\Advent of Code 2024\\Advent of Code 2024\\Advent of Code 2024.csproj",
+        "projectPath": "D:\\Code\\AdventOfCode2024\\Advent of Code 2024\\Advent of Code 2024.csproj",
         "packagesPath": "C:\\Users\\horns\\.nuget\\packages\\",
-        "outputPath": "D:\\Code\\Advent of Code 2024\\Advent of Code 2024\\obj\\",
+        "outputPath": "D:\\Code\\AdventOfCode2024\\Advent of Code 2024\\obj\\",
         "projectStyle": "PackageReference",
         "UsingMicrosoftNETSdk": false,
         "configFilePaths": [
