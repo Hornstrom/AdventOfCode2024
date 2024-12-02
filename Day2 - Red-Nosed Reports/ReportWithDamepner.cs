@@ -3,36 +3,41 @@
 public class ReportWithDampener
 {
     public bool Safe;
-    public List<int> Levels = [];
     private bool _increasing;
-    private bool _decreaing;
+    private bool _decreasing;
 
     public ReportWithDampener(string data)
     {
         Safe = true;
         var inputs = data.Split(" ");
-
-        var previousLevel = 0;
-        var dampenerUsed = false;
-
-        for (int i = 0; i < inputs.Length; i++)
+        var levels = Array.ConvertAll(inputs, s => int.Parse(s));
+        
+        Safe = SafetyCheck(levels);
+        if(Safe) return;
+        
+        for (int i = 0; i < levels.Length; i++)
         {
-            var level = int.Parse(inputs[i]);
-
-            if (i != 0)
-            {
-                var safe = SafetyCheck(previousLevel, level);
-                if (!safe && !dampenerUsed)
-                {
-                    continue;
-                }
-
-                Safe = safe;
-            }
-            Levels.Add(level);
-            previousLevel = level;
+            var arrayWithoutIndex = levels[..i].Concat(levels[(i+1)..]).ToArray();
+            Safe = SafetyCheck(arrayWithoutIndex);
+            if(Safe) return;
         }
         
+    }
+
+    private bool SafetyCheck(int[] levels)
+    {
+        var safe = true;
+        _increasing = false;
+        _decreasing = false;
+        for (int i = 0; i < levels.Length - 1; i++)
+        {
+            safe = SafetyCheck(levels[i], levels[i + 1]);
+            if (!safe)
+            {
+                return false;
+            }
+        }
+        return safe;
     }
 
     private bool SafetyCheck(int previousLevel, int level)
@@ -40,14 +45,14 @@ public class ReportWithDampener
         if (level > previousLevel)
         {
             _increasing = true;
-            if (_decreaing)
+            if (_decreasing)
             {
                 return false;
             }
         }
         if (level < previousLevel)
         {
-            _decreaing = true;
+            _decreasing = true;
             if (_increasing)
             {
                 return false;
@@ -58,6 +63,7 @@ public class ReportWithDampener
         {
             return false;
         }
+        
         return true;
     }
 }
