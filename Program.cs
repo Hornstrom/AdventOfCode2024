@@ -2,6 +2,7 @@
 
 using Advent_of_Code_2024.Day1___Order_my_list_please.Part1;
 using Advent_of_Code_2024.Day2___Red_Nosed_Reports;
+using Advent_of_Code_2024.Day3___Mull_It_Over;
 
 Console.WriteLine("Advent of Code 2024 - The Hunt for the Chief Historian");
 Console.WriteLine("");
@@ -15,4 +16,8 @@ Console.WriteLine("--- Day 2: Red-Nosed Reports ---");
 var reportReader = new ReportReader();
 Console.WriteLine("Part 1: " + reportReader.Reports.Count(x => x.Safe));
 Console.WriteLine("Part 2: " + reportReader.ReportWithDampeners.Count(x => x.Safe));
-//598 to high
+
+Console.WriteLine("--- Day 3: Mull It Over ---");
+var mulDataParser = new MulDataParser();
+Console.WriteLine("Part 1: " + mulDataParser.MulValue);
+Console.WriteLine("Part 2: ");
