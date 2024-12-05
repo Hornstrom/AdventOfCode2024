@@ -9,18 +9,35 @@ public class MulDataEditor
 
     public MulDataEditor()
     {
-        var regex = new Regex("mul\\(\\d+,\\d+\\)");
+        var regex = new Regex(@"do\(\)|don't\(\)|mul\(\d+,\d+\)");
         var matches = regex.Matches(_data);
+
+        var enable = true;
 
         foreach (Match match in matches)
         {
-            MulValue += MulCalculator(match.Value);
+            if (match.Value == "do()")
+            {
+                enable = true;
+            }
+
+            if (match.Value == "don't()")
+            {
+                enable = false;
+            }
+
+            if (match.Value.Contains("mul") && enable)
+            {
+                MulValue += MulCalculator(match.Value);
+            }
         }
+        
     }
 
     private string StringFixer(string input)
     {
-        return Regex.Replace(input, @"\(\d+\)", "");
+        var fix  = Regex.Replace(input, @"don't\(\).+?(?=do\(\))", "");
+        return Regex.Replace(fix, @"don't\(\).+", "");
     }
 
     public int MulCalculator(string mul)
@@ -28,6 +45,5 @@ public class MulDataEditor
         var regex = new Regex("\\d+");
         var matches = regex.Matches(mul);
         return int.Parse(matches[0].Value) * int.Parse(matches[1].Value);
-        
     }
 }
