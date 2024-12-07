@@ -3,7 +3,9 @@
 using Advent_of_Code_2024.Day1___Order_my_list_please.Part1;
 using Advent_of_Code_2024.Day2___Red_Nosed_Reports;
 using Advent_of_Code_2024.Day3___Mull_It_Over;
+using Advent_of_Code_2024.Day4__Ceres_Search;
 using Advent_of_Code_2024.Day6__Guard_Gallivant;
+
 
 Console.WriteLine("Advent of Code 2024 - The Hunt for the Chief Historian");
 Console.WriteLine("");
@@ -20,10 +22,14 @@ Console.WriteLine("Part 2: " + reportReader.ReportWithDampeners.Count(x => x.Saf
 
 Console.WriteLine("--- Day 3: Mull It Over ---");
 var mulDataParser = new MulDataParser();
+var mulDataEditor = new MulDataEditor();
 Console.WriteLine("Part 1: " + mulDataParser.MulValue);
-Console.WriteLine("Part 2: ");
+Console.WriteLine("Part 2: " + mulDataEditor.MulValue);
 
-
+Console.WriteLine("--- Day 4: Ceres Search ---");
+var wordPuzzle = new WordPuzzle();
+Console.WriteLine("Part 1: " + wordPuzzle.XmasCount());
+Console.WriteLine("Part 2: " + wordPuzzle.MasCrossCount());
 
 Console.WriteLine("--- Day 6: Guard Gallivant ---");
 var patrolMapper = new PatrolMapper();
