@@ -10,7 +10,7 @@ public class ReportWithDampener
     {
         Safe = true;
         var inputs = data.Split(" ");
-        var levels = Array.ConvertAll(inputs, s => int.Parse(s));
+        var levels = Array.ConvertAll(inputs, int.Parse);
         
         Safe = SafetyCheck(levels);
         if(Safe) return;
