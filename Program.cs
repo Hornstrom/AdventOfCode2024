@@ -1,6 +1,8 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
 using Advent_of_Code_2024.Day1___Order_my_list_please.Part1;
+using Advent_of_Code_2024.Day10__Hoof_It;
+using Advent_of_Code_2024.Day11__Plutonian_Pebbles;
 using Advent_of_Code_2024.Day2___Red_Nosed_Reports;
 using Advent_of_Code_2024.Day3___Mull_It_Over;
 using Advent_of_Code_2024.Day4__Ceres_Search;
@@ -8,11 +10,13 @@ using Advent_of_Code_2024.Day5__Print_Queue;
 using Advent_of_Code_2024.Day6__Guard_Gallivant;
 using Advent_of_Code_2024.Day7__Bridge_Repair;
 using Advent_of_Code_2024.Day8__Resonant_Collinearity;
+using Advent_of_Code_2024.Day9__Disk_Fragmenter;
+using Advent_of_Code_2024.Day9__Disk_Fragmenter.Part1;
 
 
 Console.WriteLine("Advent of Code 2024 - The Hunt for the Chief Historian");
 Console.WriteLine("");
-
+//
 // Console.WriteLine("--- Day 1: Historian Hysteria ---");
 // var listSorter = new ListSorter();
 // Console.WriteLine("Part 1: " + listSorter.CalculateDistance());
@@ -50,9 +54,29 @@ Console.WriteLine("");
 // Console.WriteLine("Part 1: " + operationsFinder.Equations.Where(e => e.HasSolution).Sum(e => e.Solution));
 // Console.WriteLine("Part 2: " + operationsFinder.Equations.Where(e => e.HasPart2Solution).Sum(e => e.Solution));
 
-Console.WriteLine("--- Day 8: Resonant Collinearity ---");
-var antiNodeMapper = new AntinodeMapper();
-Console.WriteLine("Part 1: " + antiNodeMapper.FindAntinodes());
-antiNodeMapper.DrawMap();
-Console.WriteLine("Part 2: " + antiNodeMapper.ApplyResonantHarmonics());
-antiNodeMapper.DrawMap();
+// Console.WriteLine("--- Day 8: Resonant Collinearity ---");
+// var antiNodeMapper = new AntinodeMapper();
+// Console.WriteLine("Part 1: " + antiNodeMapper.FindAntinodes());
+// antiNodeMapper.DrawMap();
+// Console.WriteLine("Part 2: " + antiNodeMapper.ApplyResonantHarmonics());
+// antiNodeMapper.DrawMap();
+
+//
+// Console.WriteLine("--- Day 9: Disk Fragmenter ---");
+// var diskDefrager = new DiskDefragmenter();
+// diskDefrager.Defragment();
+// Console.WriteLine("Part 1: " + diskDefrager.CalculateChecksum());
+// var diskDefrager2 = new Advent_of_Code_2024.Day9__Disk_Fragmenter.Part2.DiskDefragmenter();
+// diskDefrager2.Defragment();
+// Console.WriteLine("Part 2: " + diskDefrager2.CalculateChecksum());
+
+
+// Console.WriteLine("--- Day 10: Hoof It ---");
+// var trailFinder = new TrailFinder();
+// Console.WriteLine("Part 1: " + trailFinder.FindTrails());
+// Console.WriteLine("Part 2: " + new TrailFinder2().FindTrails());
+
+Console.WriteLine("--- Day 11: Plutonian Pebbles ---");
+var peppleMultiplier = new PebbleMultiplier();
+Console.WriteLine("Part 1: " + peppleMultiplier.Blink(25));
+Console.WriteLine("Part 2: " + new PebbleMultiplier().Blink2(75));

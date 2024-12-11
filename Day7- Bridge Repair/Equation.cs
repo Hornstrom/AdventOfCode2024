@@ -26,7 +26,7 @@ public class Equation
             HasSolution = true;
         }
 
-        if (position == Numbers.Length - 1)
+        if (position == Numbers.Length - 1 || previousSum > Solution)
         {
             return;
         }
@@ -46,7 +46,7 @@ public class Equation
             HasPart2Solution = true;
         }
 
-        if (position == Numbers.Length - 1)
+        if (position == Numbers.Length - 1 || previousSum > Solution)
         {
             return;
         }
