@@ -79,4 +79,4 @@ Console.WriteLine("");
 Console.WriteLine("--- Day 11: Plutonian Pebbles ---");
 var peppleMultiplier = new PebbleMultiplier();
 Console.WriteLine("Part 1: " + peppleMultiplier.Blink(25));
-Console.WriteLine("Part 2: " + new PebbleMultiplier().Blink2(75));
+Console.WriteLine("Part 2: " + new PebbleMultiplier().SmartBlink3(75));
