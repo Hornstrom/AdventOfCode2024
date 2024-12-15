@@ -3,6 +3,9 @@
 using Advent_of_Code_2024.Day1___Order_my_list_please.Part1;
 using Advent_of_Code_2024.Day10__Hoof_It;
 using Advent_of_Code_2024.Day11__Plutonian_Pebbles;
+using Advent_of_Code_2024.Day12__Garden_Groups;
+using Advent_of_Code_2024.Day13__Claw_Contraption;
+using Advent_of_Code_2024.Day14_Restroom_Redoubt;
 using Advent_of_Code_2024.Day2___Red_Nosed_Reports;
 using Advent_of_Code_2024.Day3___Mull_It_Over;
 using Advent_of_Code_2024.Day4__Ceres_Search;
@@ -75,8 +78,24 @@ Console.WriteLine("");
 // var trailFinder = new TrailFinder();
 // Console.WriteLine("Part 1: " + trailFinder.FindTrails());
 // Console.WriteLine("Part 2: " + new TrailFinder2().FindTrails());
+//
+// Console.WriteLine("--- Day 11: Plutonian Pebbles ---");
+// var peppleMultiplier = new PebbleMultiplier();
+// Console.WriteLine("Part 1: " + peppleMultiplier.Blink(25));
+// Console.WriteLine("Part 2: " + new PebbleMultiplier().SmartBlink3(75));
 
-Console.WriteLine("--- Day 11: Plutonian Pebbles ---");
-var peppleMultiplier = new PebbleMultiplier();
-Console.WriteLine("Part 1: " + peppleMultiplier.Blink(25));
-Console.WriteLine("Part 2: " + new PebbleMultiplier().SmartBlink3(75));
+
+// Console.WriteLine("--- Day 12: Garden Groups ---");
+// var gardenMapper = new GardenMapper();
+// Console.WriteLine("Part 1: " + gardenMapper.FenceGardenPlots());
+// Console.WriteLine("Part 2: " + gardenMapper.BulkDiscount());
+
+// Console.WriteLine("--- Day 13: Claw Contraption ---");
+// var arcade = new Arcade();
+// Console.WriteLine("Part 1: " + arcade.Play()); // 21884 to low  // 31435 to low  // 33772 to high, 31552 correct
+// Console.WriteLine("Part 2: " + new Advent_of_Code_2024.Day13__Claw_Contraption.Part2.Arcade().Play()); // 160830447803240 too high // 106947079683957 too high // 68369936555881 not the right answer
+
+
+Console.WriteLine("--- Day 14: Restroom Redoubt ---");
+// Console.WriteLine("Part 1: " + new RobotSecurity().Run(100)); // 83445876 to low
+Console.WriteLine("Part 2: " + new RobotSecurity().Run(1000000)); // 70 is not the right answer --69, 19 -71
