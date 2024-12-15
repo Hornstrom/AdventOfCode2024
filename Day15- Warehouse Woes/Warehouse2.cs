@@ -2,17 +2,17 @@
 
 namespace Advent_of_Code_2024.Day15__Warehouse_Woes;
 
-public class Warehouse
+public class Warehouse2
 {
     private int _x;
     private int _y;
     private WarehouseNode[,] _map;
-    private readonly string[] _warehouseData = File.ReadAllLines(@"Day15- Warehouse Woes/warehouse.txt");
+    private readonly string[] _warehouseData = File.ReadAllLines(@"Day15- Warehouse Woes/warehouse2.txt");
     private readonly string[] _robotData = File.ReadAllLines(@"Day15- Warehouse Woes/robot.txt");
     private int _xMax;
     private int _yMax;
 
-    public Warehouse()
+    public Warehouse2()
     {
         _xMax = _warehouseData[0].Length;
         _yMax = _warehouseData.Length;
@@ -168,7 +168,10 @@ public class Warehouse
                 case '.':
                     IsEmpty = true;
                     break;
-                case 'O':
+                case '[':
+                    IsBox = true;
+                    break;
+                case ']':
                     IsBox = true;
                     break;
                 case '@':

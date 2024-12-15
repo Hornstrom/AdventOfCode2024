@@ -6,6 +6,7 @@ using Advent_of_Code_2024.Day11__Plutonian_Pebbles;
 using Advent_of_Code_2024.Day12__Garden_Groups;
 using Advent_of_Code_2024.Day13__Claw_Contraption;
 using Advent_of_Code_2024.Day14_Restroom_Redoubt;
+using Advent_of_Code_2024.Day15__Warehouse_Woes;
 using Advent_of_Code_2024.Day2___Red_Nosed_Reports;
 using Advent_of_Code_2024.Day3___Mull_It_Over;
 using Advent_of_Code_2024.Day4__Ceres_Search;
@@ -96,6 +97,10 @@ Console.WriteLine("");
 // Console.WriteLine("Part 2: " + new Advent_of_Code_2024.Day13__Claw_Contraption.Part2.Arcade().Play()); // 160830447803240 too high // 106947079683957 too high // 68369936555881 not the right answer
 
 
-Console.WriteLine("--- Day 14: Restroom Redoubt ---");
+// Console.WriteLine("--- Day 14: Restroom Redoubt ---");
 // Console.WriteLine("Part 1: " + new RobotSecurity().Run(100)); // 83445876 to low
-Console.WriteLine("Part 2: " + new RobotSecurity().Run(1000000)); // 70 is not the right answer --69, 19 -71
+// Console.WriteLine("Part 2: " + new RobotSecurity().Run(1000000));
+
+Console.WriteLine("--- Day 15: Warehouse Woes ---");
+Console.WriteLine("Part 1: " + new Warehouse().Part1()); 
+Console.WriteLine("Part 2: "); 
