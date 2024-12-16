@@ -21,7 +21,7 @@ public class Warehouse2
         {
             for (int x = 0; x < _xMax; x++)
             {
-                _map[x,y] = new WarehouseNode(_warehouseData[y][x]);
+                _map[x,y] = new WarehouseNode(_warehouseData[y][x], x, y);
                 if (_warehouseData[y][x] == '@')
                 {
                     _x = x;
@@ -29,14 +29,22 @@ public class Warehouse2
                 }
             }
         }
-
+        //
+        // Console.WriteLine("Initial state:");
         // Print();
         foreach (var line in _robotData)
         {
             foreach (var move in line)      
             {
-                // Console.WriteLine("Move: " + move);
-                Move(move, _x, _y, '@');
+                // Console.WriteLine("Move " + move + ":");
+                var itemToMove = new ItemToMove
+                {
+                    X = _x,
+                    Y = _y,
+                    Character = '@'
+                };
+                
+                Move(move, new List<ItemToMove>() { itemToMove });
                 // Print();
             }
         }
@@ -48,6 +56,14 @@ public class Warehouse2
         {
             for (int x = 0; x < _xMax; x++)
             {
+                if (_map[x, y].Character == '@')
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.White;
+                }
                 Console.Write(_map[x,y].Character);
             }
             Console.WriteLine();
@@ -55,7 +71,7 @@ public class Warehouse2
         Console.WriteLine();
     }
 
-    private bool Move(char move, int x, int y, char thingMoving)
+    private bool Move(char move, IEnumerable<ItemToMove> itemsToMove)
     {
         var xd = 0;
         var yd = 0;
@@ -74,71 +90,89 @@ public class Warehouse2
                 yd = -1;
                 break;
         }
-        if (_map[x + xd, y + yd].IsWall)
+        
+        if (itemsToMove.Any(i => _map[i.X + xd, i.Y + yd].IsWall))
         {
             return false;
         }
 
-        if (_map[x + xd, y + yd].IsEmpty)
+        if (itemsToMove.All(i => _map[i.X + xd, i.Y + yd].IsEmpty))
         {
-            if (thingMoving == '@')
+            foreach (var item in itemsToMove)
             {
-                _map[x + xd, y + yd].IsRobot = true;
-                _map[x + xd, y + yd].IsEmpty = false;
-                _map[x + xd, y + yd].Character = '@';
-                _y += yd;
-                _x += xd;
-                _map[x, y].IsRobot = false;
+                MoveObject(item.X, xd, item.Y, yd, item.Character);
             }
-            else
-            {
-                _map[x + xd, y + yd].IsBox = true;
-                _map[x + xd, y + yd].IsEmpty = false;
-                _map[x + xd, y + yd].Character = 'O';
-                _map[x, y].IsBox = false;
-            }
-            _map[x, y].IsEmpty = true;
-            _map[x, y].Character = '.';
             return true;
         }
 
-        if (_map[x + xd, y + yd].IsBox)
+        if (itemsToMove.Any(i => _map[i.X + xd, i.Y + yd].IsBox))
         {
-            if (Move(move, x + xd, y + yd, 'O'))
+            var moveObjects2 = new List<ItemToMove>();
+            foreach (var item in itemsToMove)
             {
-                if (thingMoving == '@')
+                if (_map[item.X + xd, item.Y + yd].Character != '.')
                 {
-                    _map[x + xd, y + yd].IsRobot = true;
-                    _map[x + xd, y + yd].IsEmpty = false;
-                    _map[x + xd, y + yd].Character = '@';
-                    _y += yd;
-                    _x += xd;
-                    _map[x, y].IsRobot = false;
+                    moveObjects2.Add(new ItemToMove
+                    {
+                        X = item.X + xd,
+                        Y = item.Y + yd,
+                        Character = _map[item.X + xd, item.Y + yd].Character
+                    });
                 }
-                else
+
+                if (_map[item.X + xd, item.Y + yd].Character == '[' && yd != 0)
                 {
-                    _map[x + xd, y + yd].IsBox = true;
-                    _map[x + xd, y + yd].IsEmpty = false;
-                    _map[x + xd, y + yd].Character = 'O';
-                    _map[x, y].IsBox = false;
+                    moveObjects2.Add(new ItemToMove
+                    {
+                        X = item.X + xd + 1,
+                        Y = item.Y + yd,
+                        Character = _map[item.X + xd + 1, item.Y + yd].Character
+                    }); 
                 }
-                _map[x, y].IsEmpty = true;
-                _map[x, y].Character = '.';
+                
+                if (_map[item.X + xd, item.Y + yd].Character == ']'  && yd != 0)
+                {
+                    moveObjects2.Add(new ItemToMove
+                    {
+                        X = item.X + xd - 1,
+                        Y = item.Y + yd,
+                        Character = _map[item.X + xd - 1, item.Y + yd].Character
+                    }); 
+                }
+            }
+
+            if (Move(move, moveObjects2))
+            {
+                foreach (var item in itemsToMove)
+                {
+                    MoveObject(item.X, xd, item.Y, yd, item.Character);
+                }
+
                 return true;
             }
         }
-
         return false;
     }
 
-    public int Part1()
+    private void MoveObject(int x, int xd, int y, int yd, char thingMoving)
+    {
+        if (thingMoving == '@')
+        {
+            _y += yd;
+            _x += xd;
+        }
+        _map[x + xd,y + yd].Character = thingMoving;
+        _map[x,y].Character = '.';
+    }
+
+    public int Part2()
     {
         int total = 0;
         for (var y = 0; y < _yMax; y++)
         {
             for (int x = 0; x < _xMax; x++)
             {
-                if (_map[x, y].IsBox)
+                if (_map[x, y].Character == '[')
                 {
                     total += y * 100 + x;
                 }
@@ -148,6 +182,13 @@ public class Warehouse2
         return total;
     }
 
+    private class ItemToMove()
+    {
+        public int X;
+        public int Y;
+        public char Character;
+    }
+
 
     private class WarehouseNode
     {
@@ -155,27 +196,61 @@ public class Warehouse2
         public bool IsRobot;
         public bool IsBox;
         public bool IsEmpty;
-        public char Character;
+        private char _character;
+        public int X;
+        public int Y;
 
-        public WarehouseNode(char character)
+        public char Character
+        {
+            get => _character;
+            set
+            {
+                _character = value;
+                SetAllTheBools(value);
+            }
+        }
+
+        public WarehouseNode(char character, int x, int y)
         {
             Character = character;
+            SetAllTheBools(character);
+            X = x;
+            Y = y;
+        }
+
+        private void SetAllTheBools(char character)
+        {
             switch (character)
             {
                 case '#':
                     IsWall = true;
+                    IsEmpty = false;
+                    IsRobot = false;
+                    IsBox = false;
                     break;
                 case '.':
                     IsEmpty = true;
+                    IsRobot = false;
+                    IsBox = false;
+                    IsWall = false;
                     break;
                 case '[':
                     IsBox = true;
+                    IsRobot = false;
+                    IsEmpty = false;
+                    IsWall = false;
                     break;
                 case ']':
                     IsBox = true;
+                    IsEmpty = false;
+                    IsRobot = false;
+                    IsWall = false;
                     break;
                 case '@':
                     IsRobot = true;
+                    IsEmpty = false;
+                    IsWall = false;
+                    IsBox = false;
                     break;
             }
         }

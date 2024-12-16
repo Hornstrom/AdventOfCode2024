@@ -103,4 +103,4 @@ Console.WriteLine("");
 
 Console.WriteLine("--- Day 15: Warehouse Woes ---");
 Console.WriteLine("Part 1: " + new Warehouse().Part1()); 
-Console.WriteLine("Part 2: "); 
+Console.WriteLine("Part 2: " + new Warehouse2().Part2()); //1489556 to low --1506070 to low
