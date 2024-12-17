@@ -7,6 +7,7 @@ using Advent_of_Code_2024.Day12__Garden_Groups;
 using Advent_of_Code_2024.Day13__Claw_Contraption;
 using Advent_of_Code_2024.Day14_Restroom_Redoubt;
 using Advent_of_Code_2024.Day15__Warehouse_Woes;
+using Advent_of_Code_2024.Day16__Reindeer_Maze;
 using Advent_of_Code_2024.Day2___Red_Nosed_Reports;
 using Advent_of_Code_2024.Day3___Mull_It_Over;
 using Advent_of_Code_2024.Day4__Ceres_Search;
@@ -101,6 +102,11 @@ Console.WriteLine("");
 // Console.WriteLine("Part 1: " + new RobotSecurity().Run(100)); // 83445876 to low
 // Console.WriteLine("Part 2: " + new RobotSecurity().Run(1000000));
 
-Console.WriteLine("--- Day 15: Warehouse Woes ---");
-Console.WriteLine("Part 1: " + new Warehouse().Part1()); 
-Console.WriteLine("Part 2: " + new Warehouse2().Part2()); //1489556 to low --1506070 to low
+// Console.WriteLine("--- Day 15: Warehouse Woes ---");
+// Console.WriteLine("Part 1: " + new Warehouse().Part1()); 
+// Console.WriteLine("Part 2: " + new Warehouse2().Part2()); //1489556 to low --1506070 to low
+
+Console.WriteLine("--- Day 16: Reindeer Maze ---");
+var olympics = new Olympics();
+Console.WriteLine("Part 1: " + olympics.ExploreMace());  // 75414 to low, 75416 correct
+Console.WriteLine("Part 2: " + olympics.FindBestSeats()); 
