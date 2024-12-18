@@ -5,12 +5,13 @@ namespace Advent_of_Code_2024.Day16__Reindeer_Maze;
 public class Olympics
 {
     private MazeNode[,] _map;
-    private readonly string[] _data = File.ReadAllLines(@"Day16- Reindeer Maze/testdata.txt");
+    private readonly string[] _data = File.ReadAllLines(@"Day16- Reindeer Maze/data.txt");
     private int _xMax;
     private int _yMax;
     private int _x;
     private int _y;
     public List<Tuple<int,int>> CountedInBackTrace { get; set; } = new List<Tuple<int,int>>();
+    private List<DirectionNode> _backTraceRunForDirectionNode = [];
 
     private DirectionNode FinalNode;
     // private string _faceing = "East";
@@ -40,6 +41,10 @@ public class Olympics
 
     public void Print()
     {
+        foreach (var tuple in CountedInBackTrace)
+        {
+            _map[tuple.Item1, tuple.Item2].Symbol = 'O';
+        }
         for (var y = 0; y < _yMax; y++)
         {
             for (int x = 0; x < _xMax; x++)
@@ -56,6 +61,7 @@ public class Olympics
             }
             Console.WriteLine();
         }
+        
     }
     
     
@@ -79,24 +85,21 @@ public class Olympics
             if (currentNode.Facing == "East")
             {
                 var eastNode = _map[_x + 1, _y].East;
-                if (eastNode.Visited == false && eastNode.Symbol != '#' && eastNode.ShortestDistance >= currentNode.ShortestDistance + 1)
+                if (eastNode.Symbol != '#' && eastNode.ShortestDistance >= currentNode.ShortestDistance + 1)
                 {
-                    if (eastNode.ShortestDistance < currentNode.ShortestDistance + 1)
-                    {
-                        _distanceList.Add(eastNode);
-                        eastNode.ShortestDistance = currentNode.ShortestDistance + 1;
-                    }
+                    _distanceList.Add(eastNode);
+                    eastNode.ShortestDistance = currentNode.ShortestDistance + 1;
                     eastNode.ShortestPathThrough.Add(currentNode);
                 }
                 var northNode = _map[_x, _y - 1].North;
-                if (northNode.Visited == false && northNode.Symbol != '#' && northNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
+                if (northNode.Symbol != '#' && northNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
                 {
                     _distanceList.Add(northNode);
                     northNode.ShortestDistance = currentNode.ShortestDistance + 1001;
                     northNode.ShortestPathThrough.Add(currentNode);
                 }
                 var southNode = _map[_x, _y + 1].South;
-                if (southNode.Visited == false && southNode.Symbol != '#' && southNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
+                if (southNode.Symbol != '#' && southNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
                 {
                     _distanceList.Add(southNode);
                     southNode.ShortestDistance = currentNode.ShortestDistance + 1001;
@@ -107,21 +110,21 @@ public class Olympics
             if (currentNode.Facing == "North")
             {
                 var eastNode = _map[_x + 1, _y].East;
-                if (eastNode.Visited == false && eastNode.Symbol != '#' && eastNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
+                if (eastNode.Symbol != '#' && eastNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
                 {
                     _distanceList.Add(eastNode);
                     eastNode.ShortestDistance = currentNode.ShortestDistance + 1001;
                     eastNode.ShortestPathThrough.Add(currentNode);
                 }
                 var northNode = _map[_x, _y - 1].North;
-                if (northNode.Visited == false && northNode.Symbol != '#' && northNode.ShortestDistance >= currentNode.ShortestDistance + 1)
+                if (northNode.Symbol != '#' && northNode.ShortestDistance >= currentNode.ShortestDistance + 1)
                 {
                     _distanceList.Add(northNode);
                     northNode.ShortestDistance = currentNode.ShortestDistance + 1;
                     northNode.ShortestPathThrough.Add(currentNode);
                 }
                 var westNode = _map[_x - 1, _y].West;
-                if (westNode.Visited == false && westNode.Symbol != '#' && westNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
+                if (westNode.Symbol != '#' && westNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
                 {
                     _distanceList.Add(westNode);
                     westNode.ShortestDistance = currentNode.ShortestDistance + 1001;
@@ -131,24 +134,24 @@ public class Olympics
             if (currentNode.Facing == "West")
             {
                 var westNode = _map[_x - 1, _y].West;
-                if (westNode.Visited == false && westNode.Symbol != '#' && westNode.ShortestDistance >= currentNode.ShortestDistance + 1)
+                if (westNode.Symbol != '#' && westNode.ShortestDistance >= currentNode.ShortestDistance + 1)
                 {
                     _distanceList.Add(westNode);
                     westNode.ShortestDistance = currentNode.ShortestDistance + 1;
                     westNode.ShortestPathThrough.Add(currentNode);
                 }
                 var northNode = _map[_x, _y - 1].North;
-                if (northNode.Visited == false && northNode.Symbol != '#' && northNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
+                if (northNode.Symbol != '#' && northNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
                 {
                     _distanceList.Add(northNode);
                     northNode.ShortestDistance = currentNode.ShortestDistance + 1001;
                     northNode.ShortestPathThrough.Add(currentNode);
                 }
                 var southNode = _map[_x, _y + 1].South;
-                if (southNode.Visited == false && southNode.Symbol != '#' && southNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
+                if (southNode.Symbol != '#' && southNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
                 {
                     _distanceList.Add(southNode);
-                    southNode.ShortestDistance = currentNode.ShortestDistance + 1001;
+                    southNode.ShortestDistance = currentNode.ShortestDistance + 1001;    
                     southNode.ShortestPathThrough.Add(currentNode);
                 }
             }
@@ -156,24 +159,24 @@ public class Olympics
             if (currentNode.Facing == "South")
             {
                 var eastNode = _map[_x + 1, _y].East;
-                if (eastNode.Visited == false && eastNode.Symbol != '#' && eastNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
+                if (eastNode.Symbol != '#' && eastNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
                 {
                     _distanceList.Add(eastNode);
                     eastNode.ShortestDistance = currentNode.ShortestDistance + 1001;
                     eastNode.ShortestPathThrough.Add(currentNode);
                 }
                 var southNode = _map[_x, _y + 1].South;
-                if (southNode.Visited == false && southNode.Symbol != '#' && southNode.ShortestDistance >= currentNode.ShortestDistance + 1)
+                if (southNode.Symbol != '#' && southNode.ShortestDistance >= currentNode.ShortestDistance + 1)
                 {
                     _distanceList.Add(southNode);
-                    southNode.ShortestDistance = currentNode.ShortestDistance + 1;
+                    southNode.ShortestDistance = currentNode.ShortestDistance + 1;    
                     southNode.ShortestPathThrough.Add(currentNode);
                 }
                 var westNode = _map[_x - 1, _y].West;
-                if (westNode.Visited == false && westNode.Symbol != '#' && westNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
+                if (westNode.Symbol != '#' && westNode.ShortestDistance >= currentNode.ShortestDistance + 1001)
                 {
                     _distanceList.Add(westNode);
-                    westNode.ShortestDistance = currentNode.ShortestDistance + 1001;
+                    westNode.ShortestDistance = currentNode.ShortestDistance + 1001;    
                     westNode.ShortestPathThrough.Add(currentNode);
                 }
             }
@@ -183,23 +186,73 @@ public class Olympics
 
     public int FindBestSeats()
     {
-        var bestSeats = 0;
-        return BackTrace(FinalNode);
+        var bestSeats = BackTrace(FinalNode);
+        // var bestSeats = BackTrace2(FinalNode.X, FinalNode.Y);
+        Print();
+        return bestSeats;
     }
 
     private int BackTrace(DirectionNode currentNode)
     {
-        if (CountedInBackTrace.Any(cbt => cbt.Item1 == currentNode.X && cbt.Item2 == currentNode.Y))
+        var seats = 0;
+        if (CountedInBackTrace.Any(t => t.Item1 == currentNode.X && t.Item2 == currentNode.Y))
         {
-            return 0;
+            
         }
-        CountedInBackTrace.Add(new Tuple<int, int>(currentNode.X, currentNode.Y));
-        var backTrace = 1;
+        else
+        {
+            seats++;
+            CountedInBackTrace.Add(new Tuple<int, int>(currentNode.X, currentNode.Y));
+        }
+        if (!currentNode.ShortestPathThrough.Any())
+        {
+            return 1;
+        }
+        
         foreach (var node in currentNode.ShortestPathThrough)
         {
-            backTrace += BackTrace(node);
+            if (_backTraceRunForDirectionNode.Contains(node))
+            {
+                continue;
+            }
+            _backTraceRunForDirectionNode.Add(node);
+            seats += BackTrace(node); 
         }
-        return backTrace;    
+        return seats;
+    }
+    
+    private int BackTrace2(int x, int y)
+    {
+        var seats = 0;
+        if (CountedInBackTrace.Any(t => t.Item1 == x && t.Item2 == y))
+        {
+            
+        }
+        else
+        {
+            seats++;
+            CountedInBackTrace.Add(new Tuple<int, int>(x, y));
+        }
+        var mazeNode = _map[x, y];
+        var shortestPaths = mazeNode.East.ShortestPathThrough;
+        shortestPaths.AddRange(mazeNode.West.ShortestPathThrough);
+        shortestPaths.AddRange(mazeNode.North.ShortestPathThrough);
+        shortestPaths.AddRange(mazeNode.South.ShortestPathThrough);
+        if (!shortestPaths.Any())
+        {
+            return 1;
+        }
+        
+        foreach (var node in shortestPaths)
+        {
+            if (_backTraceRunForDirectionNode.Contains(node))
+            {
+                continue;
+            }
+            _backTraceRunForDirectionNode.Add(node);
+            seats += BackTrace2(node.X, node.Y); 
+        }
+        return seats;
     }
 
     private class MazeNode

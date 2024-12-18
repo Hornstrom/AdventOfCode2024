@@ -109,4 +109,4 @@ Console.WriteLine("");
 Console.WriteLine("--- Day 16: Reindeer Maze ---");
 var olympics = new Olympics();
 Console.WriteLine("Part 1: " + olympics.ExploreMace());  // 75414 to low, 75416 correct
-Console.WriteLine("Part 2: " + olympics.FindBestSeats()); 
+Console.WriteLine("Part 2: " + olympics.FindBestSeats()); // 429 to low
