@@ -1,5 +1,6 @@
 ﻿// See https://aka.ms/new-console-template for more information
 
+using System.Diagnostics;
 using Advent_of_Code_2024.Day1___Order_my_list_please.Part1;
 using Advent_of_Code_2024.Day10__Hoof_It;
 using Advent_of_Code_2024.Day11__Plutonian_Pebbles;
@@ -10,6 +11,7 @@ using Advent_of_Code_2024.Day15__Warehouse_Woes;
 using Advent_of_Code_2024.Day16__Reindeer_Maze;
 using Advent_of_Code_2024.Day17__RAM_Run;
 using Advent_of_Code_2024.Day2___Red_Nosed_Reports;
+using Advent_of_Code_2024.Day20__Race_Condition;
 using Advent_of_Code_2024.Day3___Mull_It_Over;
 using Advent_of_Code_2024.Day4__Ceres_Search;
 using Advent_of_Code_2024.Day5__Print_Queue;
@@ -112,12 +114,19 @@ Console.WriteLine("");
 // Console.WriteLine("Part 1: " + olympics.ExploreMace());  // 75414 to low, 75416 correct
 // Console.WriteLine("Part 2: " + olympics.FindBestSeats()); // 429 to low
 
-Console.WriteLine("--- Day 18: RAM Run ---");
+// Console.WriteLine("--- Day 17: Chronospatial Computer ---");
 
-var data = File.ReadAllLines(@"Day18- RAM Run/data.txt");
-var size = 70;
-var computer = new Computer(size, data[..1024]);
+// Console.WriteLine("--- Day 18: RAM Run ---");
+// var data = File.ReadAllLines(@"Day18- RAM Run/data.txt");
+// var size = 70;
+// var computer = new Computer(size, data[..1024]);
+// Console.WriteLine("Part 1: " + computer.StepsToExit()); //248 right answer
+// Console.WriteLine("Part 2: " + computer.CoordinateThatBlockExitPath(data[1024..])); //32,55 right answer
 
-Console.WriteLine("Part 1: " + computer.StepsToExit()); //248 right answer
-Console.WriteLine("Part 2: " + computer.CoordinateThatBlockExitPath(data[1024..])); //32,55 right answer
-
+Console.WriteLine("--- Day 20: Race Condition ---");
+var stopwatch = Stopwatch.StartNew();
+// Console.WriteLine("Part 1: " + new RaceCondition().Part1(100));
+// Console.WriteLine("Part 1 done in: " + stopwatch.Elapsed);
+Console.WriteLine("Part 2: " + new RaceCondition2().Part2(100)); // 3358507 too high
+Console.WriteLine("Part 2 done in: " + stopwatch.Elapsed);
+stopwatch.Stop();
