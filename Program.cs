@@ -12,6 +12,7 @@ using Advent_of_Code_2024.Day16__Reindeer_Maze;
 using Advent_of_Code_2024.Day17__RAM_Run;
 using Advent_of_Code_2024.Day2___Red_Nosed_Reports;
 using Advent_of_Code_2024.Day20__Race_Condition;
+using Advent_of_Code_2024.Day21__Keypad_Conundrum;
 using Advent_of_Code_2024.Day3___Mull_It_Over;
 using Advent_of_Code_2024.Day4__Ceres_Search;
 using Advent_of_Code_2024.Day5__Print_Queue;
@@ -123,10 +124,18 @@ Console.WriteLine("");
 // Console.WriteLine("Part 1: " + computer.StepsToExit()); //248 right answer
 // Console.WriteLine("Part 2: " + computer.CoordinateThatBlockExitPath(data[1024..])); //32,55 right answer
 
-Console.WriteLine("--- Day 20: Race Condition ---");
+// Console.WriteLine("--- Day 20: Race Condition ---");
+// var stopwatch = Stopwatch.StartNew();
+// // Console.WriteLine("Part 1: " + new RaceCondition().Part1(100));
+// // Console.WriteLine("Part 1 done in: " + stopwatch.Elapsed);
+// Console.WriteLine("Part 2: " + new RaceCondition2().Part2(100)); // 3358507 too high
+// Console.WriteLine("Part 2 done in: " + stopwatch.Elapsed);
+// stopwatch.Stop();
+
+Console.WriteLine("--- Day 21: Keypad Conundrum ---");
 var stopwatch = Stopwatch.StartNew();
-// Console.WriteLine("Part 1: " + new RaceCondition().Part1(100));
-// Console.WriteLine("Part 1 done in: " + stopwatch.Elapsed);
-Console.WriteLine("Part 2: " + new RaceCondition2().Part2(100)); // 3358507 too high
-Console.WriteLine("Part 2 done in: " + stopwatch.Elapsed);
+Console.WriteLine("Part 1: " + new ReindeerSpaceship().Part1()); //179200 to high! 170508 to high!
+Console.WriteLine("Part 1 done in: " + stopwatch.Elapsed);
+Console.WriteLine("Part 2: ");
+// Console.WriteLine("Part 2 done in: " + stopwatch.Elapsed);
 stopwatch.Stop();
